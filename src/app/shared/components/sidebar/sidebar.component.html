@@ -1,0 +1,22 @@
+<div class="body-container">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button (click)="isExpanded = !isExpanded" class="flex">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="example-app-name ml-30">Nested Menus</h1>
+    </mat-toolbar>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+            (mouseleave)="mouseleave()">
+            <mat-nav-list *ngFor="let item of mainMenu">
+                <mat-list-item class="parent" [routerLink]="item.router">
+                    <span class="full-width" *ngIf="isExpanded || isShowing">{{item.name}}</span>
+                    <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+                </mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+        <div class="example-sidenav-content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-container>
+</div>
